@@ -1,0 +1,19 @@
+[
+  {
+    "id": "ab171a5a-6afd-4df6-a043-b46124829cfd",
+    "email": "zcy1174955817@gmail.com",
+    "name": "norris",
+    "passwordHash": "$2a$10$EayqW1YT6FCsHM1GhkLGTusCQ7W0pk6CIgu2znCqiqQRqYjPLbd8K",
+    "cart": [
+      {
+        "id": "2-HD-SND-M",
+        "productId": 2,
+        "title": "Desert Sand Hoodie",
+        "price": 29.5,
+        "sku": "HD-SND-M",
+        "qty": 1
+      }
+    ],
+    "createdAt": "2025-11-22T15:16:44.513Z"
+  }
+]

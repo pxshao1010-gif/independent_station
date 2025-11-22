@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "title_en": "Classic Black T-Shirt",
+    "title_ar": "قميص أسود كلاسيكي",
+    "description_en": "Comfortable cotton t-shirt. Available in multiple sizes.",
+    "description_ar": "قميص قطن مريح. متوفر بمقاسات متعددة.",
+    "price": 12.99,
+    "currency": "KWD",
+    "images": [
+      "https://via.placeholder.com/600x600?text=Product+1"
+    ],
+    "variants": [
+      { "sku": "TS-BLK-S", "size": "S", "stock": 10 },
+      { "sku": "TS-BLK-M", "size": "M", "stock": 15 }
+    ]
+  },
+  {
+    "id": 2,
+    "title_en": "Desert Sand Hoodie",
+    "title_ar": "هودي لون رمال الصحراء",
+    "description_en": "Lightweight hoodie, ideal for cool evenings.",
+    "description_ar": "هودي خفيف الوزن، مثالي للمساءات الباردة.",
+    "price": 29.5,
+    "currency": "KWD",
+    "images": [
+      "https://via.placeholder.com/600x600?text=Product+2"
+    ],
+    "variants": [
+      { "sku": "HD-SND-M", "size": "M", "stock": 8 }
+    ]
+  }
+]

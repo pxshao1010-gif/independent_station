@@ -1,0 +1,112 @@
+[
+  {
+    "id": "e8b0b9fa-3538-47be-bcd1-67acab150a39",
+    "cart": [
+      {
+        "id": "1-TS-BLK-S",
+        "productId": 1,
+        "title": "Classic Black T-Shirt",
+        "price": 12.99,
+        "sku": "TS-BLK-S",
+        "qty": 1
+      },
+      {
+        "id": "2-HD-SND-M",
+        "productId": 2,
+        "title": "Desert Sand Hoodie",
+        "price": 29.5,
+        "sku": "HD-SND-M",
+        "qty": 1
+      }
+    ],
+    "customer": {
+      "name": "Chongyang Zheng",
+      "phone": "017687900057",
+      "address": "Michelangelostraße 4, 01217 Dresden 702"
+    },
+    "status": "paid",
+    "createdAt": "2025-11-22T14:51:08.371Z",
+    "paidAt": "2025-11-22T14:51:08.398Z"
+  },
+  {
+    "id": "9ed92b1e-2906-4009-82c5-725eb8382432",
+    "cart": [
+      {
+        "id": "1-TS-BLK-S",
+        "productId": 1,
+        "title": "Classic Black T-Shirt",
+        "price": 12.99,
+        "sku": "TS-BLK-S",
+        "qty": 1
+      },
+      {
+        "id": "2-HD-SND-M",
+        "productId": 2,
+        "title": "Desert Sand Hoodie",
+        "price": 29.5,
+        "sku": "HD-SND-M",
+        "qty": 1
+      }
+    ],
+    "customer": {
+      "name": "Chongyang Zheng",
+      "phone": "017687900057",
+      "address": "Michelangelostraße 4, 01217 Dresden 702"
+    },
+    "status": "paid",
+    "createdAt": "2025-11-22T14:51:59.869Z",
+    "paidAt": "2025-11-22T14:51:59.900Z"
+  },
+  {
+    "id": "3d3cf2a3-7b15-4ba6-8b29-435f372f029c",
+    "cart": [
+      {
+        "id": "1-TS-BLK-S",
+        "productId": 1,
+        "title": "Classic Black T-Shirt",
+        "price": 12.99,
+        "sku": "TS-BLK-S",
+        "qty": 1
+      },
+      {
+        "id": "2-HD-SND-M",
+        "productId": 2,
+        "title": "Desert Sand Hoodie",
+        "price": 29.5,
+        "sku": "HD-SND-M",
+        "qty": 1
+      }
+    ],
+    "customer": {
+      "name": "Chongyang Zheng",
+      "phone": "017687900057",
+      "address": "Michelangelostraße 4, 01217 Dresden 702"
+    },
+    "status": "paid",
+    "userId": "ab171a5a-6afd-4df6-a043-b46124829cfd",
+    "createdAt": "2025-11-22T15:16:55.871Z",
+    "paidAt": "2025-11-22T15:16:55.914Z"
+  },
+  {
+    "id": "f237dc79-5145-4e41-86db-5d90dabfe949",
+    "cart": [
+      {
+        "id": "2-HD-SND-M",
+        "productId": 2,
+        "title": "Desert Sand Hoodie",
+        "price": 29.5,
+        "sku": "HD-SND-M",
+        "qty": 1
+      }
+    ],
+    "customer": {
+      "name": "Chongyang Zheng",
+      "phone": "017687900057",
+      "address": "Michelangelostraße 4, 01217 Dresden 702"
+    },
+    "status": "paid",
+    "userId": "ab171a5a-6afd-4df6-a043-b46124829cfd",
+    "createdAt": "2025-11-22T15:17:33.806Z",
+    "paidAt": "2025-11-22T15:17:33.850Z"
+  }
+]
