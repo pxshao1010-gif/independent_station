@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { fetchProducts, postCheckout, getMe, postCart } from './api'
+import { getHeroBannerImage } from './utils/imageUtils'
 import ProductCard from './components/ProductCard'
 import ProductDetail from './components/ProductDetail'
 import Cart from './components/Cart'
@@ -109,17 +110,31 @@ export default function App() {
 
       <main className="container">
         {view === 'home' && (
-          <section className="products">
-            {products.map(p => (
-              <ProductCard 
-                key={p.id} 
-                product={p} 
-                locale={locale} 
-                onAdd={addToCart}
-                onImageClick={handleProductClick}
+          <>
+            <div className="hero-banner">
+              <img 
+                src={getHeroBannerImage()} 
+                alt={locale === 'ar' ? 'صورة رئيسية للمستحضرات التجميلية' : 'Cosmetics Hero Banner'}
+                className="hero-image"
+                onError={(e) => {
+                  // 如果图片不存在，隐藏图片元素
+                  e.target.style.display = 'none'
+                  e.target.parentElement.style.display = 'none'
+                }}
               />
-            ))}
-          </section>
+            </div>
+            <section className="products">
+              {products.map(p => (
+                <ProductCard 
+                  key={p.id} 
+                  product={p} 
+                  locale={locale} 
+                  onAdd={addToCart}
+                  onImageClick={handleProductClick}
+                />
+              ))}
+            </section>
+          </>
         )}
 
         {view === 'cart' && (

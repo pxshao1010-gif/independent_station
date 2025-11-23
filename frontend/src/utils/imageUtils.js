@@ -47,3 +47,11 @@ export function getDefaultProductImage() {
   return '/images/default-product.png'
 }
 
+/**
+ * 获取主页横幅图片
+ * @returns {string} 横幅图片路径
+ */
+export function getHeroBannerImage() {
+  return '/images/cosmetics-banner.jpg'
+}
+
