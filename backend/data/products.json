@@ -8,7 +8,7 @@
     "price": 12.99,
     "currency": "KWD",
     "images": [
-      "https://via.placeholder.com/600x600?text=Product+1"
+      "/images/test1.png"
     ],
     "variants": [
       { "sku": "TS-BLK-S", "size": "S", "stock": 10 },
@@ -24,10 +24,59 @@
     "price": 29.5,
     "currency": "KWD",
     "images": [
-      "https://via.placeholder.com/600x600?text=Product+2"
+      "/images/test2.png"
     ],
     "variants": [
       { "sku": "HD-SND-M", "size": "M", "stock": 8 }
+    ]
+  },
+  {
+    "id": 3,
+    "title_en": "Premium Cotton Shirt",
+    "title_ar": "قميص قطني فاخر",
+    "description_en": "High-quality cotton shirt with elegant design.",
+    "description_ar": "قميص قطني عالي الجودة بتصميم أنيق.",
+    "price": 24.99,
+    "currency": "KWD",
+    "images": [
+      "/images/test3.png"
+    ],
+    "variants": [
+      { "sku": "SH-COT-M", "size": "M", "stock": 12 },
+      { "sku": "SH-COT-L", "size": "L", "stock": 10 }
+    ]
+  },
+  {
+    "id": 4,
+    "title_en": "Sporty Active Wear",
+    "title_ar": "ملابس رياضية نشطة",
+    "description_en": "Perfect for sports and outdoor activities.",
+    "description_ar": "مثالي للرياضة والأنشطة الخارجية.",
+    "price": 35.0,
+    "currency": "KWD",
+    "images": [
+      "/images/test4.png"
+    ],
+    "variants": [
+      { "sku": "SP-ACT-S", "size": "S", "stock": 15 },
+      { "sku": "SP-ACT-M", "size": "M", "stock": 20 },
+      { "sku": "SP-ACT-L", "size": "L", "stock": 18 }
+    ]
+  },
+  {
+    "id": 5,
+    "title_en": "Casual Weekend Outfit",
+    "title_ar": "زي عطلة نهاية الأسبوع",
+    "description_en": "Comfortable and stylish for weekend relaxation.",
+    "description_ar": "مريح وأنيق للاسترخاء في عطلة نهاية الأسبوع.",
+    "price": 19.99,
+    "currency": "KWD",
+    "images": [
+      "/images/test5.png"
+    ],
+    "variants": [
+      { "sku": "CW-WK-M", "size": "M", "stock": 14 },
+      { "sku": "CW-WK-L", "size": "L", "stock": 16 }
     ]
   }
 ]

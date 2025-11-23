@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { getImageUrl, getDefaultProductImage } from '../utils/imageUtils'
 
 export default function Cart({ cart, updateQty, onCheckout, locale }) {
   const [customer, setCustomer] = useState({ name: '', phone: '', address: '' })
@@ -15,8 +16,18 @@ export default function Cart({ cart, updateQty, onCheckout, locale }) {
       <h2>{locale === 'ar' ? 'السلة' : 'Cart'}</h2>
       <div className="items">
         {cart.length === 0 && <p>{locale === 'ar' ? 'لا توجد منتجات' : 'No items'}</p>}
-        {cart.map(item => (
+        {cart.map(item => {
+          const imageUrl = item.image ? getImageUrl(item.image) : getDefaultProductImage()
+          return (
           <div key={item.id} className="cart-item">
+            <img 
+              src={imageUrl} 
+              alt={item.title} 
+              className="cart-item-image"
+              onError={(e) => { 
+                e.target.src = getDefaultProductImage()
+              }}
+            />
             <div className="info">
               <div className="title">{item.title}</div>
               <div className="sku">{item.sku}</div>
@@ -25,7 +36,8 @@ export default function Cart({ cart, updateQty, onCheckout, locale }) {
               <input type="number" value={item.qty} min="0" onChange={e => updateQty(item.id, Number(e.target.value))} />
             </div>
           </div>
-        ))}
+          )
+        })}
       </div>
 
       <div className="summary">
