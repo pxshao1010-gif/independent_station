@@ -36,7 +36,7 @@ function parseDescription(descRaw = '') {
   return sections
 }
 
-export default function ProductDetail({ product, onAdd, onBack, locale }) {
+export default function ProductDetail({ product, onAdd, onBack, locale, products }) {
   if (!product) return null
 
   const title = product[`title_${locale}`] || product.title_en
@@ -46,6 +46,25 @@ export default function ProductDetail({ product, onAdd, onBack, locale }) {
   const [selectedVariant, setSelectedVariant] = useState(product.variants?.[0] || null)
   const [imageError, setImageError] = useState(false)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  const [selectedChoices, setSelectedChoices] = useState({})
+
+  // initialize selected choices for package includes when product changes
+  React.useEffect(() => {
+    if (product && product.includes) {
+      const init = {}
+      product.includes.forEach((inc, idx) => {
+        if (Array.isArray(inc)) init[idx] = inc[0]
+        else init[idx] = inc
+      })
+      setSelectedChoices(init)
+    } else {
+      setSelectedChoices({})
+    }
+    // reset variant selection if product changes
+    setSelectedVariant(product.variants?.[0] || null)
+    setSelectedImageIndex(0)
+    setImageError(false)
+  }, [product])
 
   // 获取当前显示的图片
   const currentImage = product.images?.[selectedImageIndex]
@@ -100,7 +119,46 @@ export default function ProductDetail({ product, onAdd, onBack, locale }) {
             <h1>{title}</h1>
           </div>
 
-          <p className="price-large">{(selectedVariant && selectedVariant.price) ? selectedVariant.price : product.price} {product.currency}</p>
+          <p className="price-large">{(selectedVariant && selectedVariant.price) ? selectedVariant.price : product.price} <span className="currency">{product.currency}</span></p>
+
+          {/* If product is a package, show included items list (product.includes holds ids) */}
+          {product.is_package && product.includes && product.includes.length > 0 && (
+            <div className="package-includes">
+              <h4>{locale === 'ar' ? 'المحتويات' : 'Includes'}</h4>
+              <ul>
+                {product.includes.map((inc, idx) => {
+                  if (!Array.isArray(inc)) {
+                    const item = products?.find(p => p.id === inc)
+                    const name = item ? (item[`title_${locale}`] || item.title_en) : `Item #${inc}`
+                    return <li key={idx}>{name}</li>
+                  }
+
+                  // inc is an array of option ids -> render choice buttons
+                  return (
+                    <li key={idx} className="include-choice">
+                      <div className="choice-label">{locale === 'ar' ? 'اختر الصابون' : 'Choose soap'}</div>
+                      <div className="choice-options">
+                        {inc.map(optId => {
+                          const opt = products?.find(p => p.id === optId)
+                          const optName = opt ? (opt[`title_${locale}`] || opt.title_en) : `Item #${optId}`
+                          const active = selectedChoices[idx] === optId
+                          return (
+                            <button
+                              key={optId}
+                              className={`choice-btn ${active ? 'active' : ''}`}
+                              onClick={() => setSelectedChoices(s => ({ ...s, [idx]: optId }))}
+                            >
+                              {optName}
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          )}
 
           {/* Intro paragraphs */}
           {sections.intro && (
@@ -171,6 +229,22 @@ export default function ProductDetail({ product, onAdd, onBack, locale }) {
 
           {/* 添加到购物车按钮 */}
           {(() => {
+            if (product.is_package) {
+              // build selected ids in order
+              const selectedIds = product.includes.map((inc, idx) => Array.isArray(inc) ? selectedChoices[idx] : inc)
+              const sku = `pkg-${product.id}-${selectedIds.join('-')}`
+              const variant = { sku, price: product.price, choices: selectedIds }
+              return (
+                <button 
+                  className="add-to-cart-large"
+                  onClick={() => onAdd(product, variant)}
+                >
+                  <svg className="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="#fff" d="M7 4h-2l-1 2h2l3.6 7.59-1.35 2.45C8.89 16.37 9.33 17 10 17h8v-2h-7.42c-.14 0-.25-.11-.29-.24L11.1 13h5.45c.75 0 1.41-.41 1.75-1.03L21 6H6.21"/></svg>
+                  <span>{locale === 'ar' ? 'أضف الباقة إلى السلة' : 'Add Package to Cart'}</span>
+                </button>
+              )
+            }
+
             const defaultVariant = selectedVariant || (product.variants && product.variants[0]) || { sku: `p-${product.id}`, size: 'Default' }
             return (
               <button 

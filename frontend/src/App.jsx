@@ -19,6 +19,16 @@ export default function App() {
   const [selectedProduct, setSelectedProduct] = useState(null)
   const dir = locale === 'ar' ? 'rtl' : 'ltr'
 
+  // Explicit layout rows (user requested order)
+  const rowsById = [
+    [1],      // row 1: product 1
+    [2, 3],   // row 2: product 2 and 3
+    [5],      // row 3: product 5
+    [4],      // row 4: product 4
+    [6],      // row 5: product 6
+    [7],      // row 6: product 7
+  ]
+
   useEffect(() => {
     fetchProducts().then(setProducts).catch(err => {
       console.error('Failed to load products', err)
@@ -42,7 +52,17 @@ export default function App() {
     setCart(prev => {
       const found = prev.find(i => i.id === id)
       const itemPrice = (variant && variant.price) ? variant.price : product.price
-      const next = found ? prev.map(i => i.id === id ? { ...i, qty: i.qty + 1 } : i) : [...prev, { id, productId: product.id, title: product[`title_${locale}`] || product.title_en, price: itemPrice, sku: variant.sku, qty: 1, image: product.images?.[0] }]
+      // For packages with selected choices, include choice names in title
+      let title = product[`title_${locale}`] || product.title_en
+      if (variant && variant.choices && Array.isArray(variant.choices)) {
+        const names = variant.choices.map(cid => {
+          const p = products.find(x => x.id === cid)
+          return p ? (p[`title_${locale}`] || p.title_en) : `#${cid}`
+        })
+        title = `${title} — ${names.join(', ')}`
+      }
+
+      const next = found ? prev.map(i => i.id === id ? { ...i, qty: i.qty + 1 } : i) : [...prev, { id, productId: product.id, title, price: itemPrice, sku: variant.sku, qty: 1, image: product.images?.[0] }]
       // if logged in, persist cart
       if (user) postCart(next).catch(() => {})
       return next
@@ -135,19 +155,57 @@ export default function App() {
               </div>
             </div>
 
-            <section className="products" id="products-section">
+            <section className="products-layout" id="products-section">
               {products.length === 0 ? (
                 <div className="no-products">{locale === 'ar' ? 'لا توجد منتجات حالياً. تابعنا قريباً.' : 'No products available right now — check back soon.'}</div>
               ) : (
-                products.map(p => (
-                  <ProductCard 
-                    key={p.id} 
-                    product={p} 
-                    locale={locale} 
-                    onAdd={addToCart}
-                    onImageClick={handleProductClick}
-                  />
-                ))
+                (() => {
+                  const normal = products.filter(p => !p.is_package)
+                  const packages = products.filter(p => p.is_package)
+
+                  // Map configured id rows to actual product objects
+                  const rows = rowsById.map(row => row.map(id => normal.find(p => p.id === id)).filter(Boolean))
+
+                  return (
+                    <>
+                      <div className="main-products">
+                        <div className="products-rows">
+                          {rows.map((row, rIdx) => (
+                            <div key={rIdx} className={`product-row row-${rIdx}`}> 
+                              {row.map(p => (
+                                <ProductCard 
+                                  key={p.id}
+                                  product={p}
+                                  locale={locale}
+                                  onAdd={addToCart}
+                                  onImageClick={handleProductClick}
+                                />
+                              ))}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <aside className="packages-aside">
+                        <div className="packages-box">
+                          <h3 className="packages-title">{locale === 'ar' ? 'الباقات المميزة' : 'Amazing Packages'}</h3>
+                          <div className="packages-list">
+                            {packages.map(p => (
+                              <div key={p.id} className="package-card">
+                                <ProductCard 
+                                  product={p}
+                                  locale={locale}
+                                  onAdd={addToCart}
+                                  onImageClick={handleProductClick}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </aside>
+                    </>
+                  )
+                })()
               )}
             </section>
           </>
@@ -168,6 +226,7 @@ export default function App() {
             onAdd={addToCart}
             onBack={handleBackToHome}
             locale={locale}
+            products={products}
           />
         )}
 

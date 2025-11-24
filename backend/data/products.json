@@ -82,17 +82,49 @@
     "title_ar": "أعشاب الزفاف الملكية 👑",
     "description_en": "A perfect alternative for girls who don’t know how to use the traditional Dalkah.\nThese imported herbs help brighten and even the skin tone naturally.\n\nTake an amount that suits your body, mix it with water or yogurt until it becomes firm and starts to dry.\nApply it all over your body and leave it for 5–10 minutes so your skin can absorb all the natural ingredients.\nThen start scrubbing/rolling, and you’ll see the dead skin coming off — leaving your body softer, cleaner, and visibly brighter!\n\n❌ Not suitable for pregnant women.",
     "description_ar": "بديل مثالي للفتيات اللواتي لا يعرفن كيفية استخدام الدلكة التقليدية.\nهذه الأعشاب المستوردة تساعد على تفتيح وتوحيد لون البشرة بشكل طبيعي.\n\nخذي كمية تناسب جسمك، امزجيها بالماء أو الزبادي حتى تصبح لزجة وتبدأ بالجفاف.\nضعيها على كامل الجسم واتركيها 5–10 دقائق ليتم امتصاص المكونات الطبيعية.\nثم ابدئي الفرك/الدلك، وسترى الجلد الميت يتقشر — تاركًا جسمًا أنعم وأنظف وأكثر إشراقًا!\n\n❌ غير مناسب للحامل.",
-    "price": 29,
+    "price": 7,
     "currency": "KWD",
     "images": [
       "/images/test6.png"
     ],
-    "variants": [
-      { "sku": "RB-PAK1", "size": "Brightening Package", "price": 29 },
-      { "sku": "RB-PAK2", "size": "Extra Brightening Package", "price": 37 },
-      { "sku": "RB-PAK3", "size": "Bride Package", "price": 44 }
-    ],
-    "show_variants": true
+    "variants": [ { "sku": "RB-01", "size": "Single", "price": 7 } ],
+    "show_variants": false
+  },
+  {
+    "id": 8,
+    "title_en": "Brightening Package ✨",
+    "title_ar": "باقة التفتيح ✨",
+    "description_en": "We have three amazing packages 🤍🤍🤍✨\n\nIncludes:\n• Dalkah with brightening oil\n• Your choice of soap (Extra Brightening / Extra Femininity)\n• Mirror Glow Lotion\n\nA curated set to give you a glowing, even-toned look for special occasions.",
+    "description_ar": "لدينا ثلاث باقات مدهشة 🤍🤍🤍✨\n\nالمحتويات:\n• دلكة مع زيت التفتيح\n• خيارك من الصابون (تفتيح إضافي / أنوثة متألقة)\n• لوشن توهج المرايا\n\nمجموعة مُنسّقة تمنحك توهجًا وتوحيدًا لبشرتك للمناسبات الخاصة.",
+    "price": 29,
+    "currency": "KWD",
+    "images": ["/images/pkg1.png"],
+    "includes": [1, [2,3], 5],
+    "is_package": true
+  },
+  {
+    "id": 9,
+    "title_en": "Extra Brightening Package ✨",
+    "title_ar": "باقة التفتيح الإضافي ✨",
+    "description_en": "Includes:\n• Dalkah with brightening oil\n• Your choice of soap (Extra Brightening / Extra Femininity)\n• Brightening Body Scrub\n• Mirror Glow Lotion\n\nA stronger routine for visible brightening results.",
+    "description_ar": "المحتويات:\n• دلكة مع زيت التفتيح\n• خيارك من الصابون (تفتيح إضافي / أنوثة متألقة)\n• مقشر الجسم المشرق\n• لوشن توهج المرايا\n\nروتين أقوى لنتائج تفتيح مرئية.",
+    "price": 37,
+    "currency": "KWD",
+    "images": ["/images/pkg2.png"],
+    "includes": [1, [2,3], 4, 5],
+    "is_package": true
+  },
+  {
+    "id": 10,
+    "title_en": "Bride Package 👰🏻‍♀️✨",
+    "title_ar": "باقة العروس 👰🏻‍♀️✨",
+    "description_en": "Includes:\n• Dalkah with brightening oil\n• Your choice of soap (Extra Brightening / Extra Femininity)\n• Brightening Body Scrub\n• Royal Bridal Herbs\n• Mirror Glow Lotion\n\nThe ultimate bridal set for pre-wedding glow and care.",
+    "description_ar": "المحتويات:\n• دلكة مع زيت التفتيح\n• خيارك من الصابون (تفتيح إضافي / أنوثة متألقة)\n• مقشر الجسم المشرق\n• أعشاب الزفاف الملكية\n• لوشن توهج المرايا\n\nالباقة النهائية للعروس للحصول على توهج وعناية قبل الزفاف.",
+    "price": 44,
+    "currency": "KWD",
+    "images": ["/images/pkg3.png"],
+    "includes": [1, [2,3], 4, 6, 5],
+    "is_package": true
   },
   {
     "id": 7,
