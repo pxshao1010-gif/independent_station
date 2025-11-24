@@ -20,7 +20,10 @@ export default function App() {
   const dir = locale === 'ar' ? 'rtl' : 'ltr'
 
   useEffect(() => {
-    fetchProducts().then(setProducts)
+    fetchProducts().then(setProducts).catch(err => {
+      console.error('Failed to load products', err)
+      setProducts([])
+    })
 
     // if token present, fetch profile and cart
     const token = localStorage.getItem('token')
@@ -38,7 +41,8 @@ export default function App() {
     const id = `${product.id}-${variant.sku}`
     setCart(prev => {
       const found = prev.find(i => i.id === id)
-      const next = found ? prev.map(i => i.id === id ? { ...i, qty: i.qty + 1 } : i) : [...prev, { id, productId: product.id, title: product[`title_${locale}`] || product.title_en, price: product.price, sku: variant.sku, qty: 1, image: product.images?.[0] }]
+      const itemPrice = (variant && variant.price) ? variant.price : product.price
+      const next = found ? prev.map(i => i.id === id ? { ...i, qty: i.qty + 1 } : i) : [...prev, { id, productId: product.id, title: product[`title_${locale}`] || product.title_en, price: itemPrice, sku: variant.sku, qty: 1, image: product.images?.[0] }]
       // if logged in, persist cart
       if (user) postCart(next).catch(() => {})
       return next
@@ -132,15 +136,19 @@ export default function App() {
             </div>
 
             <section className="products" id="products-section">
-              {products.map(p => (
-                <ProductCard 
-                  key={p.id} 
-                  product={p} 
-                  locale={locale} 
-                  onAdd={addToCart}
-                  onImageClick={handleProductClick}
-                />
-              ))}
+              {products.length === 0 ? (
+                <div className="no-products">{locale === 'ar' ? 'لا توجد منتجات حالياً. تابعنا قريباً.' : 'No products available right now — check back soon.'}</div>
+              ) : (
+                products.map(p => (
+                  <ProductCard 
+                    key={p.id} 
+                    product={p} 
+                    locale={locale} 
+                    onAdd={addToCart}
+                    onImageClick={handleProductClick}
+                  />
+                ))
+              )}
             </section>
           </>
         )}
