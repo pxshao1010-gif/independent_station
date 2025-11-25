@@ -18,23 +18,29 @@ export default function ProductCard({ product, onAdd, onImageClick, locale }) {
   }
 
   return (
-    <div className="product-card">
+    <div className="product-card dior-style">
       <div className="product-image-wrapper" onClick={handleImageClick}>
         <img 
           src={imageError ? getDefaultProductImage() : imageUrl} 
           alt={title}
           onError={() => setImageError(true)}
         />
-        
+
+        {/* Overlay shown on hover similar to high-fashion galleries */}
+        <div className="product-overlay">
+          <div className="overlay-meta">
+            <div className="product-title-large">{title}</div>
+            <div className="product-subtitle">{product.brand || ''}</div>
+          </div>
+          <div className="overlay-actions">
+            <div className="overlay-price">{product.price} {product.currency}</div>
+          </div>
+        </div>
       </div>
-      <div className="product-body">
+
+      {/* Minimal body with uppercase title underneath — Dior-like clean layout */}
+      <div className="product-body dior-body">
         <h3 onClick={handleImageClick} style={{ cursor: 'pointer' }}>{title}</h3>
-        <p className="price">{product.price} {product.currency}</p>
-        
-        <button className="add-btn" onClick={() => onAdd(product, defaultVariant)}>
-          <svg className="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="#fff" d="M7 4h-2l-1 2h2l3.6 7.59-1.35 2.45C8.89 16.37 9.33 17 10 17h8v-2h-7.42c-.14 0-.25-.11-.29-.24L11.1 13h5.45c.75 0 1.41-.41 1.75-1.03L21 6H6.21"/></svg>
-          <span>{locale === 'ar' ? 'أضف إلى السلة' : 'Add to cart'}</span>
-        </button>
       </div>
     </div>
   )

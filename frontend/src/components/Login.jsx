@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { login } from '../api'
 import Register from './Register'
+import Icon from './Icon'
 
 export default function Login({ onLogin, locale }) {
   const [email, setEmail] = useState('')
@@ -24,8 +25,19 @@ export default function Login({ onLogin, locale }) {
         <>
           <h2>{locale === 'ar' ? 'تسجيل الدخول' : 'Login'}</h2>
           {err && <div className="error">{err}</div>}
-          <input placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-          <input placeholder={locale === 'ar' ? 'كلمة المرور' : 'Password'} type="password" value={password} onChange={e => setPassword(e.target.value)} />
+          <div className="input-with-icon">
+            <span className="input-icon" aria-hidden>
+              <Icon name="email" />
+            </span>
+            <input aria-label="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+          </div>
+
+          <div className="input-with-icon">
+            <span className="input-icon" aria-hidden>
+              <Icon name="lock" />
+            </span>
+            <input aria-label="password" placeholder={locale === 'ar' ? 'كلمة المرور' : 'Password'} type="password" value={password} onChange={e => setPassword(e.target.value)} />
+          </div>
           <button onClick={submit}>{locale === 'ar' ? 'دخول' : 'Login'}</button>
           <div style={{ marginTop: 8 }}>
             {locale === 'ar' ? 'لا تملك حسابًا؟' : 'Do not have account?'} <a style={{ cursor: 'pointer' }} onClick={() => setShowRegister(true)}>{locale === 'ar' ? 'سجل هنا' : 'Register here'}</a>

@@ -25,5 +25,13 @@
       }
     ],
     "createdAt": "2025-11-22T15:16:44.513Z"
+  },
+  {
+    "id": "a19dc022-21f5-4b0f-9613-d1c94f86fe46",
+    "email": "ss",
+    "name": "pinxue",
+    "passwordHash": "$2a$10$Iv8z60BId0L2Wdcsxlsc/urJp6gB8AtN3c3WgvrhPHK5WXtcjzxjq",
+    "cart": [],
+    "createdAt": "2025-11-25T02:17:29.807Z"
   }
 ]

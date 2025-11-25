@@ -3,6 +3,10 @@
   --font-sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   --skin-bg: #F4DFC1; /* warm light skin-tone yellow */
   --card-bg: #ffffff;
+  /* blended card background and border that harmonize with the page skin color
+     Use the gradient for a soft edge so product cards visually merge with the page. */
+  --card-bg-blend: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(244,223,193,0.45));
+  --card-border-blend: rgba(244,223,193,0.45);
   --accent: #b36b1e; /* warm amber accent */
   --accent-strong: #8a4a10;
   --muted: #6b4a3a;
@@ -75,9 +79,11 @@ body{
 .packages-grid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
 
 /* Card style */
-.product-card{background:var(--card-bg);border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,0.06);box-shadow:0 8px 18px rgba(0,0,0,0.06);transition:transform .18s,box-shadow .18s}
+.product-card{background:var(--card-bg-blend);border-radius:12px;overflow:hidden;border:1px solid var(--card-border-blend);box-shadow:0 8px 18px rgba(0,0,0,0.06);transition:transform .18s,box-shadow .18s}
 .product-card:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(0,0,0,0.09)}
-.product-image-wrapper img{width:100%;height:220px;object-fit:cover;display:block}
+.product-image-wrapper{background:transparent;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.product-image-wrapper img{width:100%;height:220px;object-fit:contain;display:block}
+.packages-box{background:var(--card-bg-blend);border-radius:12px;padding:14px;border:1px solid var(--card-border-blend);box-shadow:0 8px 20px rgba(0,0,0,0.04)}
 .product-body{padding:0.9rem}
 .product-body h3{margin:0 0 0.45rem;font-size:1.05rem;color:var(--muted)}
 .product-body .desc{font-size:0.9rem;color:#6b4f3f;margin:0 0 0.6rem}
@@ -101,6 +107,27 @@ body{
   transition:transform .12s ease,box-shadow .12s ease,opacity .12s;
 }
 .product-body .add-btn:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(179,107,30,0.22);opacity:0.98}
+
+/* Dior-like product card styles */
+.dior-style{border-radius:6px;background:transparent;border:none;box-shadow:none}
+.dior-style .product-image-wrapper{position:relative;overflow:hidden}
+.dior-style .product-image-wrapper img{height:380px;object-fit:contain;display:block;transition:transform .45s ease}
+.dior-style:hover .product-image-wrapper img{transform:scale(1.03)}
+
+.product-overlay{position:absolute;left:0;right:0;bottom:0;padding:18px 20px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 70%);color:#fff;opacity:0;transition:opacity .18s ease}
+.dior-style:hover .product-overlay{opacity:1}
+.overlay-meta{display:flex;flex-direction:column;gap:4px}
+.product-title-large{font-size:1.05rem;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+.product-subtitle{font-size:0.85rem;opacity:0.85}
+.overlay-price{font-weight:700;font-size:0.95rem}
+
+/* Minimal body under image */
+.dior-body{padding:12px 6px;text-align:center}
+.dior-body h3{margin:0;font-size:0.95rem;text-transform:uppercase;letter-spacing:0.8px;color:var(--text)}
+
+/* Reduce size for aside package cards (keep current smaller image) */
+.packages-box .dior-style .product-image-wrapper img{height:140px;object-fit:contain}
+.packages-box .dior-body{padding:8px}
 
 /* Polished back button on detail and cart pages */
 .back-button{
@@ -214,9 +241,33 @@ body{
 .variant-button.active{background:var(--accent);color:#fff;border-color:var(--accent-strong)}
 .add-to-cart-large{background:var(--accent);color:#fff;padding:0.9rem 1.6rem;border-radius:12px;border:none}
 
-/* Auth/account */
-.auth{max-width:480px;margin:1rem auto;padding:1rem;border-radius:10px;background:var(--card-bg);box-shadow:0 8px 20px rgba(0,0,0,0.06)}
-.auth input{width:100%;padding:0.6rem;margin:0.4rem 0;border-radius:8px;border:1px solid rgba(0,0,0,0.06)}
+/* Auth / Login styles - themed to site yellow skin */
+.auth{
+  max-width:480px;
+  margin:1.25rem auto;
+  padding:1.25rem 1.25rem;
+  border-radius:14px;
+  background:linear-gradient(180deg, rgba(255,252,244,0.9), rgba(255,248,236,0.95));
+  border:1px solid rgba(179,107,30,0.12);
+  box-shadow:0 14px 30px rgba(179,107,30,0.08);
+}
+.auth h2{margin:0 0 0.75rem;color:var(--accent-strong);font-size:1.5rem}
+.auth .error{background:#fff3f0;color:#b00020;padding:0.6rem;border-radius:8px;margin-bottom:0.6rem;border:1px solid rgba(176,10,10,0.06)}
+.auth input{width:100%;padding:0.8rem;margin:0.45rem 0;border-radius:10px;border:1px solid rgba(179,107,30,0.08);background:#fff}
+.auth input:focus{outline:none;box-shadow:0 6px 18px rgba(179,107,30,0.06);border-color:var(--accent)}
+.auth button{display:block;width:100%;padding:0.85rem 1rem;margin-top:0.6rem;background:linear-gradient(180deg,var(--accent) 0%, var(--accent-strong) 100%);color:#fff;border:none;border-radius:12px;cursor:pointer;font-weight:800;box-shadow:0 10px 24px rgba(179,107,30,0.14)}
+.auth button:hover{transform:translateY(-2px)}
+.auth a{color:var(--accent-strong);text-decoration:underline}
+
+/* Input with icon */
+.input-with-icon{position:relative;display:flex;align-items:center;margin:0.4rem 0}
+.input-with-icon .input-icon{position:absolute;left:12px;display:inline-flex;align-items:center;justify-content:center;pointer-events:none}
+.input-with-icon input{padding-left:44px}
+.input-with-icon svg{display:block}
+
+/* RTL support: icon on right */
+[dir="rtl"] .input-with-icon .input-icon{left:auto;right:12px}
+[dir="rtl"] .input-with-icon input{padding-left:12px;padding-right:44px}
 
 /* Account page styles */
 .account{max-width:1100px;margin:1rem auto;padding:0 1rem}
