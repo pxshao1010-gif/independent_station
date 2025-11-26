@@ -4,26 +4,7 @@
     "email": "zcy1174955817@gmail.com",
     "name": "norris",
     "passwordHash": "$2a$10$EayqW1YT6FCsHM1GhkLGTusCQ7W0pk6CIgu2znCqiqQRqYjPLbd8K",
-    "cart": [
-      {
-        "id": "6-RB-PAK2",
-        "productId": 6,
-        "title": "Royal Bridal Herbs 👑",
-        "price": 37,
-        "sku": "RB-PAK2",
-        "qty": 1,
-        "image": "/images/test6.png"
-      },
-      {
-        "id": "6-RB-PAK1",
-        "productId": 6,
-        "title": "Royal Bridal Herbs 👑",
-        "price": 29,
-        "sku": "RB-PAK1",
-        "qty": 1,
-        "image": "/images/test6.png"
-      }
-    ],
+    "cart": [],
     "createdAt": "2025-11-22T15:16:44.513Z"
   },
   {

@@ -146,7 +146,7 @@ export default function App() {
                 }}
               />
               <div className="hero-cta">
-                <h2>{locale === 'ar' ? 'أول مركز مساج سوداني في الكويت' : 'Kuwait\'s first Sudanese massage'}</h2>
+                <h2>{locale === 'ar' ? 'أول دلكه سودانية بأعشاب التفتيح في الكويت' : 'Kuwait\'s first Sudanese massage'}</h2>
                 <p>{locale === 'ar' ? 'دلکا — تجربة مساج سودانية أصيلة في الكويت' : "dalka_kw — Authentic Sudanese massage experience in Kuwait"}</p>
                 <div style={{display:'flex',gap:12}}>
                   <button className="btn" onClick={() => { setView('product-detail'); if (products[0]) { setSelectedProduct(products[0]); } }}>{locale === 'ar' ? 'تسوق الآن' : 'Shop Now'}</button>
